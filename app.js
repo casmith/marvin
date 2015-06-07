@@ -4,11 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var irc = require('irc');
-
+// services
+var irc = require('./services/irc');
 var routes = require('./routes/index');
 
 var app = express();
+
+// init services
+irc.init();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -55,26 +58,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-// init irc client
-
-// TODO: config
-var client = new irc.Client('us.undernet.org', 'marvin', {
-  autoconnect: false,
-  userName: 'marvin',
-  realName: 'marvin',
-  port: 6667,
-  localAddress: null,
-  debug: true,
-    showErrors: true,
-    autoRejoin: true,
-    autoConnect: false,
-    channels: ['#mp3passion'],
-    floodProtection: false,
-    floodProtectionDelay: 1000,
-    stripColors: false,
-    channelPrefixes: "&#",
-    messageSplit: 512
-});
 
 // TODO: configuration for retry count
 // client.connect(3, function(){
