@@ -11,3 +11,4 @@
   - queued
 - edit queue priority
 - bot status
+- detect other bots and their statuses
