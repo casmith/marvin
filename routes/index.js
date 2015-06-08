@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 var elasticsearch = require('elasticsearch');
 var moment = require('moment');
+var botstatus = require('../services/botstatus');
 
 var client = new elasticsearch.Client({
       host: 'localhost:9200',
       log: 'trace'
 });
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,14 +27,7 @@ router.post('/search', function(req, res, next) {
 });
 
 router.get('/bots', function(req, res, next) {
-  var bots = {
-    'mp3heim': {
-      'status' : 'online',
-      'lastUpdated' : moment()
-    }
-  }
-
-  res.render('bots', {bots: bots})
+  res.render('bots', {bots: botstatus.get()})
 });
 
 module.exports = router;

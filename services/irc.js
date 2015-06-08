@@ -1,6 +1,7 @@
 'use strict';
 
 var irc = require('irc');
+var botstatus = require('./botstatus');
 
 var client;
 module.exports = {
@@ -25,6 +26,17 @@ module.exports = {
 		});
 
 		client.connect();
+
+		client.addListener('message#mfdguild', function(from, message) {
+			var regex = /Type: @(.*) For My List Of.*/
+			var matches = message.match(regex);
+			if (matches) {
+				console.log('match!' + matches[1]);
+				botstatus.update(matches[1]);
+			} else {
+				console.log('not match');
+			}
+		});
 	}
 
 }

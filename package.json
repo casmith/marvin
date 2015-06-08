@@ -17,5 +17,11 @@
     "moment": "^2.10.3",
     "morgan": "~1.5.3",
     "serve-favicon": "~2.2.1"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "karma": "^0.12.36",
+    "mocha": "^2.2.5",
+    "sinon": "^1.14.1"
   }
 }
