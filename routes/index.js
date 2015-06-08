@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var elasticsearch = require('elasticsearch');
+var moment = require('moment');
 
 var client = new elasticsearch.Client({
       host: 'localhost:9200',
@@ -23,7 +24,17 @@ router.post('/search', function(req, res, next) {
   }, function (error) {
     console.trace(error.message);
   });
-  
+});
+
+router.get('/bots', function(req, res, next) {
+  var bots = {
+    'mp3heim': {
+      'status' : 'online',
+      'lastUpdated' : moment()
+    }
+  }
+
+  res.render('bots', {bots: bots})
 });
 
 module.exports = router;
