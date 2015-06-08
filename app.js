@@ -4,14 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// services
-var irc = require('./services/irc');
+
 var routes = require('./routes/index');
 
 var app = express();
-
-// init services
-irc.init();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
