@@ -23,7 +23,7 @@ function init() {
 		channels: channels,
 		floodProtection: false,
 		floodProtectionDelay: 1000,
-		stripColors: false,
+		stripColors: true,
 		channelPrefixes: "&#",
 		messageSplit: 512
 	});
@@ -41,5 +41,11 @@ function addChannelListener(callback) {
 
 module.exports = {
 	init: init,
-	addChannelListener: addChannelListener
+	addChannelListener: addChannelListener,
+	addListener: function(target, callback) {
+		client.addListener(target, callback);
+	},
+	say: function(target, msg) {
+		client.say(target, msg);
+	}
 }
